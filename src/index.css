@@ -201,7 +201,7 @@ img {
  }
 
  /*Search Bar*/
- .search-form {
+ .search__form {
     position: relative;
     width: 3.75rem;
     height: 3.75rem;
@@ -223,7 +223,7 @@ img {
     border-radius: 999px;
     padding-left: 1rem;
     font-size: 15px;
-    pointer-events: none;
+    pointer-events: auto;
     transition: width 0.3;
     z-index: 10001;
 }

@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom'
 
 const Layout = () => {
     const [searchData, setSearchData] = useState({
-        result: [],
+        results: [],
         query: '' //necessary to show what user searhered for dynamically
     })
 

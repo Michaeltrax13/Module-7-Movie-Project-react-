@@ -3,8 +3,11 @@ import { useOutletContext } from 'react-router-dom'
 import MovieCard from "../components/ui/MovieCard"
 
 const Home = () => {
+    const API_KEY = process.env.REACT_APP_API_KEY;
+    console.log("API key loaded:", Boolean(API_KEY))
+
   const { searchData, loading} = useOutletContext();
-  const {sortOption, setSortOption} = useState("default")
+  const [sortOption, setSortOption] = useState("default")
 
   function sortMovies (movies, option) {
     const sorted = [...movies]
@@ -41,7 +44,7 @@ const Home = () => {
                     </div>
                     <div className="movie__filter">
                         <label htmlFor="sortSelect">Sort:</label>
-                        <select id="filter" className="filter" value={sortOption} onchange={(e) => setSortOption(e.target.value)}>
+                        <select id="filter" className="filter" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
                             <option value="default">Default</option>
                             <option value="A - Z">A - Z</option>
                             <option value="Z - A">Z - A</option>
