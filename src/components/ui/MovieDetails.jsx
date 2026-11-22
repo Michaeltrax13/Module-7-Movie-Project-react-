@@ -10,7 +10,6 @@ const MovieDetails = () => {
 	const { imdbID } = useParams()
 	const [movie, setMovie] = useState(null)
 	const [loading, setLoading] = useState(true)
-	const [imageError, setImageError] = useState(false)
 
 	async function getMovieDetails() {
 		try {
@@ -33,25 +32,11 @@ const MovieDetails = () => {
     }, [imdbID])
 
     if (loading) {
-        return (
-            <div className="main">
-                <div className="movie-details__container">
-                    <div className="movie-details__back">
-                        <Link to="/" className="movie-details__back-link">Back</Link>
-                    </div>
-                    <div className="movie-details__content">
-                        <div className="movie-details__poster--wrapper">
-                            <img  />
-                            <div className="movie-details__info">
-                                <h1 className="movie-details__title">${imdbID.Title}</h1>
-                                <p className="movie-details__year">${imdbID.Year}</p>
-                                <p className="movie-details__rating">${imdbID.Rating}</p>
-                                <p className="movie-details__released">${imdbID.Releases}</p>
-                            </div>
-                        </div>
-                        <div className="movie-details__text--wrapper"></div>
-                    </div>
-                </div>
+        return(
+            <div className="movie-card movie-card__skeleton">
+                <div className="movie-card__img--skeleton"></div>
+                <div className="movie-card__title--skeleton"></div>
+                <div className="movie-card__year--skeleton"></div>
             </div>
         )
     }
@@ -69,8 +54,53 @@ const MovieDetails = () => {
         )
     }
 
-    const poster = movie.Poster !=="N/A" ? movie.Poster: "";
-    const showPlaceholder = !poster || imageError
+    return (
+            <div className="main">
+                <div className="movie-details__container">
+                    <div className="movie-details__back">
+                        <Link to="/" className="movie-details__back-link">Back</Link>
+                    </div>
+                    <div className="movie-details__content">
+                        <div className="movie-details__poster--wrapper">
+                            <img src={movie.Poster}/>
+                            <div className="movie-details__info">
+                                <h1 className="movie-details__title">{movie.Title}</h1>
+                                <p className="movie-details__year">{movie.Year}</p>
+                                <p className="movie-details__rating">{movie.Rated}</p>
+                                <p className="movie-details__released">{movie.Released}</p>
+                            </div>
+                        </div>
+                        <div className="movie-details__text--wrapper">
+                            <div className="movie-details__detail">
+                                <h3>Genre</h3>
+                                <p>{movie.Genre}</p>
+                            </div>
+                            <div className="movie-details__detail">
+                                <h3>Writer</h3>
+                                <p>{movie.Writer}</p>
+                            </div>
+                            <div className="movie-details__detail">
+                                <h3>Actors</h3>
+                                <p>{movie.Actors}</p>
+                            </div>
+                            <div className="movie-details__detail">
+                                <h3>Plot</h3>
+                                <p>{movie.Plot}</p>
+                            </div>
+                            <div className="movie-details__detail">
+                                <h3>Language</h3>
+                                <p>{movie.Language}</p>
+                            </div>
+                            <div className="movie-details__detail">
+                                <h3>Awards</h3>
+                                <p>{movie.Awards}</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
 
 
 }

@@ -28,29 +28,31 @@ const Home = () => {
 
     return (
         <div className="content__wrapper--search justify-between">
-                    <div className="display__search--box">
-                        <h1 data-46guyuhv78 className="search-info">
-                            <div className="display__box">
-                                Search Results:<span id="display__txt">
-                                    {searchData.results.length > 0
-                                    ? `Showing: ${searchData.query}`
-                                        : searchData.query
-                                        ? 'No Movies Found'
-                                        : 'Search for a Movie'
-                                    }
-                                </span>
-                            </div>
-                        </h1>
-                    </div>
-                    <div className="movie__filter">
-                        <label htmlFor="sortSelect">Sort:</label>
-                        <select id="filter" className="filter" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
-                            <option value="default">Default</option>
-                            <option value="A - Z">A - Z</option>
-                            <option value="Z - A">Z - A</option>
-                            <option value="oldest">Oldest</option>
-                            <option value="newest">Newest</option>
-                        </select>
+                    <div className="controls">
+                        <div className="display__search--box">
+                            <h1 data-46guyuhv78 className="search-info">
+                                <div className="display__box">
+                                    <span id="display__txt">
+                                        {searchData.results.length > 0
+                                        ? `Search results: ${searchData.query}`
+                                            : searchData.query
+                                            ? 'No Movies Found'
+                                            : 'Search for a Movie'
+                                        }
+                                    </span>
+                                </div>
+                            </h1>
+                        </div>
+                        <div className="movie__filter">
+                            <label htmlFor="sortSelect">Sort:</label>
+                            <select id="filter" className="filter" value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
+                                <option value="default">Default</option>
+                                <option value="A - Z">A - Z</option>
+                                <option value="Z - A">Z - A</option>
+                                <option value="oldest">Oldest</option>
+                                <option value="newest">Newest</option>
+                            </select>
+                        </div>
                     </div>
                     <div className="movies-grid" id="moviesGrid">
                         {loading ? (

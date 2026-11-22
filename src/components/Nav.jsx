@@ -118,15 +118,17 @@ const Nav = ({ setSearchData, setLoading }) => {
                 </div>
             </div>
             <div className="content__wrapper">
-                <h1>Browser Our Movies</h1>
-                <form action = {handleSubmit} className="search__form">
-                        <input name="searchInput" type="text" className="search__input" maxLength="80" placeholder="" />
-                        {/*<div class="search__button">
-                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                            <i class="fa-solid fa-xmark search-close"></i>
-                        </div>*/}
-                    
-                </form>
+                <div className="search__form--container">
+                    <h1>Browser Our Movies</h1>
+                    <form action = {handleSubmit} className="search__form">
+                            <input name="searchInput" type="text" className="search__input" maxLength="80" placeholder="" />
+                            {/*<div class="search__button">
+                                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                                <i class="fa-solid fa-xmark search-close"></i>
+                            </div>*/}
+                        
+                    </form>
+                </div>
             </div>
         </div>
     </div>
