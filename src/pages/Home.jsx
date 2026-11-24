@@ -8,7 +8,7 @@ const Home = () => {
 
   const { searchData, loading} = useOutletContext();
   const [sortOption, setSortOption] = useState("default")
-
+  
   function sortMovies (movies, option) {
     const sorted = [...movies]
 

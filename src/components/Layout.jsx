@@ -9,7 +9,7 @@ const Layout = () => {
         query: '' //necessary to show what user searhered for dynamically
     })
 
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     //skeleton loading state lives here since Nav triggers it and
     //Home displays it
 

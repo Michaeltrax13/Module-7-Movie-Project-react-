@@ -22,7 +22,7 @@ const MovieCard = ({movie, skeleton}) => {
             <Link to={`/${movie.imdbID}`} >
                 {!showPlaceholder ? (
                     <img 
-                    src={poster} 
+                    src={movie.Poster} 
                     alt={movie.Title}
                     className="movie-card__img"
                     onError={() => setImageError(true)}
@@ -35,6 +35,8 @@ const MovieCard = ({movie, skeleton}) => {
                     </div>
                 )}
             </Link>
+            <p className="movie-card__title">{movie.Title}</p>
+            <p className="movie-card__title">{movie.Year}</p>
         </div>
     )
 }

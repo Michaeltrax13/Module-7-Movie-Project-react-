@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import logo from "../assets/absolutecinema.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link, useLocation, useNavigate } from "react-router-dom" 
+import { useLocation, useNavigate } from "react-router-dom" 
 import axios from 'axios'
+import Navbar from './NavBar'
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 console.log("API key loaded:", Boolean(API_KEY))
 
 const Nav = ({ setSearchData, setLoading }) => {
-
-    function openMenu() {
-        document.body.classList += " menu--open"
-    }
-
-    function closeMenu() {
-        document.body.classList.remove("menu--open")
-    }
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -62,8 +54,11 @@ const Nav = ({ setSearchData, setLoading }) => {
 
     setTimeout(() => {toggleSearch()},2000); */}
 
-    async function handleSubmit(formData) {
+    async function handleSubmit(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target)
         const query = formData.get("searchInput")
+        
         setSearchTerm(query)
         fetchMovies(query)
         if(location.pathname !== "/") {
@@ -73,63 +68,41 @@ const Nav = ({ setSearchData, setLoading }) => {
 
     async function fetchMovies(query) {
         setLoading(true);
-        const { data } = await axios.get(
-            `https://www.omdbapi.com/?s=${query}&apikey=${API_KEY}`
-        )
-
-        setSearchData({
-            results: data.Search || [],
-            query: query,
-        })
-
-        setTimeout(() => {
-            setLoading(false)
-        }, 500)
+        try {
+            const { data } = await axios.get(
+                `https://www.omdbapi.com/?s=${query}&apikey=${API_KEY}`
+            )
+    
+            setSearchData({
+                results: data.Search || [],
+                query: query,
+            })
+        } catch (error) {
+            console.error("Error fetch movies:", error)
+        } finally {
+            setTimeout(() => {
+                setLoading(false)
+            }, 500)
+        }
     }
 
     useEffect(() => {
-        fetchMovies("Resident");
+        fetchMovies('Resident');
     }, [])
 
   return (
-    <div className="contaner">
+    <div className="container">
         <div className="row">
-            <div className="nav">
-                <Link to="/" >
-                    <img src={logo} alt="" className="logo" />
-                </Link>
-                <div className="nav__links">
-                    <Link to="/" className="nav__link nav__link--white">Home</Link>
-                    <Link to="/" className="nav__link nav__link--white">Find your movie</Link>
-                    <Link to="/" className="nav__link nav__link--btn">Contact</Link>
-                </div>
-                <button className="btn__menu" onClick={openMenu}>
-                    <FontAwesomeIcon icon="bars" />
-                </button>
-                <div className="menu__backdrop">
-                    <button className="btn__menu btn__menu--close" onClick={closeMenu}>
-                        <FontAwesomeIcon icon="times" />
-                    </button>
-                    <ul className="menu__links">
-                        <li className="menu__list"><Link to="/" className="menu__link menu__link--white">Home</Link></li>
-                        <li className="menu__list"><Link to="/" className="menu__link menu__link--white">Find your movie</Link></li>
-                        <li className="menu__list"><Link to="/" className="menu__link menu__link--white">Contact</Link></li>
-                    </ul>
-                </div>
-            </div>
-            <div className="content__wrapper">
-                <div className="search__form--container">
-                    <h1>Browser Our Movies</h1>
-                    <form action = {handleSubmit} className="search__form">
-                            <input name="searchInput" type="text" className="search__input" maxLength="80" placeholder="" />
-                            {/*<div class="search__button">
-                                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                                <i class="fa-solid fa-xmark search-close"></i>
-                            </div>*/}
-                        
-                    </form>
-                </div>
-            </div>
+            <Navbar />
+            <h1>Browse Our Movies</h1>
+            <form onSubmit={handleSubmit} className="search__form">
+                <div className="search-form__group">
+                    <input name="searchInput" type="text" className="search__input" maxLength="80" placeholder="" />
+                    <button className="search-form__button" type="submit">
+                        <FontAwesomeIcon icon="magnifying-glass" className="search-form__icon" />
+                    </button>    
+                </div>               
+            </form>
         </div>
     </div>
   )
