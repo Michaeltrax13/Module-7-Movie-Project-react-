@@ -11,7 +11,7 @@ const Nav = ({ setSearchData, setLoading }) => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const [searchTerm, setSearchTerm] = useState("")
+    const [ searchTerm, setSearchTerm] = useState("")
 
 
     
