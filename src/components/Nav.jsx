@@ -14,45 +14,7 @@ const Nav = ({ setSearchData, setLoading }) => {
     const [searchTerm, setSearchTerm] = useState("")
 
 
-    {/*function toggleSearch () {
-        // Select necessary DOM elements
-        const searchForm = document.querySelector('.search-form');
-        const searchButton = document.querySelector('.search__button');
-        const searchInput = document.querySelector('#search__input');
-        const searchDisplay = document.getElementById('display__txt')
-
-        // Add event listener for search button
-        searchButton.addEventListener('click', () => {
-    const searchTerm = searchInput.value.trim();
-
-    if (searchTerm) {
-        searchDisplay.textContent = ` ${searchTerm}`;
-        fetchMovies(searchTerm);
-    }
-
-    searchForm.classList.toggle('active-search');
-    });
-
-        // Handle Enter key for searching
-        searchInput.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-
-            const searchTerm = searchInput.value.trim();
-
-            if (searchTerm) {
-            searchDisplay.textContent = ` ${searchTerm}`;
-            fetchMovies(searchTerm);
-            }
-
-            searchInput.value = '';
-            searchForm.classList.remove('active-search');
-            searchInput.blur();   
-        }
-        });
-    };
-
-    setTimeout(() => {toggleSearch()},2000); */}
+    
 
     async function handleSubmit(e) {
         e.preventDefault();

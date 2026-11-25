@@ -28,6 +28,12 @@ const MovieDetails = () => {
     }
 
     useEffect(() => {
+          async function getMovieDetails() {
+            const response = await fetch(`https://example.com{id}`);
+            const data = await response.json();
+            setMovie(data);
+        }
+
         getMovieDetails()
     }, [imdbID])
 
@@ -62,7 +68,7 @@ const MovieDetails = () => {
                     </div>
                     <div className="movie-details__content">
                         <div className="movie-details__poster--wrapper">
-                            <img src={movie.Poster}/>
+                            <img src={movie.Poster} alt={`${movie.Title} poster`} />
                             <div className="movie-details__info">
                                 <h1 className="movie-details__title">{movie.Title}</h1>
                                 <p className="movie-details__year">{movie.Year}</p>

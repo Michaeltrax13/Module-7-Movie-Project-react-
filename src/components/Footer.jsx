@@ -30,15 +30,15 @@ const Footer = () => {
                 @ 2026 Absolute Cinema Inc. All Rights Reserved
             </div>
             <div className="footer__socials">
-                <a className="footer__social--link">
+                <figure className="footer__social--link">
                     <FontAwesomeIcon icon="facebook" className='fa-facebook' />
-                </a>
-                <a className="footer__social--link">
+                </figure>
+                <figure className="footer__social--link">
                     <FontAwesomeIcon icon="twitter" className='fa-twitter' />
-                </a>
-                <a className="footer__social--link">
+                </figure>
+                <figure className="footer__social--link">
                     <FontAwesomeIcon icon="youtube" className='fa-youtube'/>
-                </a>
+                </figure>
             </div>
         </div>
     </div>
